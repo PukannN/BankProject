@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankLibrary
 {
-    internal class CheckingAccount : Account
+    public class CheckingAccount : Account
     {
         public string DebitCardNumber { get; set; }
         public decimal OverdraftLimit { get; set; } = 100.00m;

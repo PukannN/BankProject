@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankLibrary
 {
-
-    internal class SavingsAccount : Account
+    public class SavingsAccount : Account
     {
         //private int withdrawalLimit = 3;
         private decimal interestRate = 0.02m; // 2% interest rate
@@ -21,6 +20,5 @@ namespace BankLibrary
         {
             return $"Savings account: {AccountNumber}, Balance: {Balance}";
         }
-
     }
 }
