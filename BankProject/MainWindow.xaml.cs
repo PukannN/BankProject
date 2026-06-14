@@ -20,9 +20,18 @@ namespace BankProject
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+
         }
+
+        public void Test(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Test");
+        }
+
+
     }
 }

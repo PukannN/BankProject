@@ -15,7 +15,7 @@ namespace BankConsole
             acc1.Name = "John";
             acc1.LastName = "Doe";
             acc1.AccountNumber = "123456789";
-            acc1.Deposit(-1000);
+            acc1.Deposit(1000);
             Console.WriteLine(acc1.Balance);
 
         }
