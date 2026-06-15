@@ -18,17 +18,13 @@ using System.Windows.Shapes;
 
 namespace BankProject
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
         public MainWindow()
         {
             InitializeComponent();
-            CBTransType.Items.Add("Deposit");
-            CBTransType.Items.Add("Withdrawal");
+
         }
 
         public void Test(object sender, RoutedEventArgs e)
@@ -58,6 +54,11 @@ namespace BankProject
         private void TBLastName_TextChanged(object sender, TextChangedEventArgs e)
         {
             UIHelper.FormatUsernameInput(TBLastName);
+        }
+
+        private void BtnExecute_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
