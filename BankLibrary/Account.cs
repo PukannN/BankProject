@@ -11,8 +11,8 @@ namespace BankLibrary
         public static readonly string IBAN = "1234";
         public string Name { get; set; }
         public string LastName { get; set; }
-        public string AccountNumber { get; set; } //TODO: generate new random acc number + IBAN prefix
-        public decimal Balance { get; protected set; }
+        public string AccountNumber { get; internal set; } //TODO: generate new random acc number + IBAN prefix
+        public decimal Balance { get; internal set; }
 
         public void Deposit(decimal amount)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankLibrary;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -26,12 +27,13 @@ namespace BankProject
         public MainWindow()
         {
             InitializeComponent();
-
+            CBTransType.Items.Add("Deposit");
+            CBTransType.Items.Add("Withdrawal");
         }
 
         public void Test(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Test");
+            MessageBox.Show($"Test");
         }
         private void BtnNewAccount_Click(object sender, RoutedEventArgs e)
         {
@@ -47,7 +49,6 @@ namespace BankProject
         {
             UIHelper.FormatDecimalInput(TBAmount);
         }
-
 
         private void TBFirstName_TextChanged(object sender, TextChangedEventArgs e)
         {
