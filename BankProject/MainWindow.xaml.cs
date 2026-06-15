@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,59 +33,30 @@ namespace BankProject
         {
             MessageBox.Show("Test");
         }
-
-        private void UpDownBalance_TextChanged(object sender, TextChangedEventArgs e)
+        private void BtnNewAccount_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (UpDownBalance.Text != "")
-                {
-                    Int64 value = Int64.Parse(UpDownBalance.Text);
-                    UpDownBalance.Text = value.ToString();
-                }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Please enter a valid number.");
-                UpDownBalance.Text = "";
-            }
-            catch (OverflowException)
-            {
-                MessageBox.Show("The number is too large.");
-                UpDownBalance.Text = UpDownBalance.Text.Substring(0, UpDownBalance.Text.Length - 1); // Remove last written character
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}");
-                UpDownBalance.Text = "";
-            }
-    }
+            
+        }
+
+        private void TBBalance_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UIHelper.FormatDecimalInput(TBBalance);
+        }
 
         private void TBAmount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                if (TBAmount.Text != "")
-                {
-                    Int64 value = Int64.Parse(TBAmount.Text);
-                    TBAmount.Text = value.ToString();
-                }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Please enter a valid number.");
-                TBAmount.Text = "";
-            }
-            catch (OverflowException)
-            {
-                MessageBox.Show("The number is too large.");
-                TBAmount.Text = TBAmount.Text.Substring(0, TBAmount.Text.Length - 1); // Remove last written character
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}");
-                TBAmount.Text = "";
-            }
+            UIHelper.FormatDecimalInput(TBAmount);
+        }
+
+
+        private void TBFirstName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UIHelper.FormatUsernameInput(TBFirstName);
+        }
+
+        private void TBLastName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UIHelper.FormatUsernameInput(TBLastName);
         }
     }
 }

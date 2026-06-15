@@ -13,22 +13,22 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         </Grid.ColumnDefinitions>
         <Grid Background="#FFF0F0F0" Margin="8,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="288" Height="408" >
             <TextBlock FontSize="23" Margin="64,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="New Account" />
-            <TextBox FontSize="18" Text="" Margin="48,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Height="32" Name="TBFirstName" />
-            <TextBox FontSize="18" Text="" Margin="48,136,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Height="32" Name="TBLastName" />
-            <TextBox FontSize="18" Text="" Margin="48,192,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Height="32" Name="UpDownBalance" TextChanged="UpDownBalance_TextChanged" />
+            <TextBox FontSize="18" Text="" Margin="48,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Height="32" Name="TBFirstName" TextChanged="TBFirstName_TextChanged" />
+            <TextBox FontSize="18" Text="" Margin="48,136,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Height="32" Name="TBLastName" TextChanged="TBLastName_TextChanged" />
+            <TextBox FontSize="18" Text="" Margin="48,192,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Height="32" Name="TBBalance" TextChanged="TBBalance_TextChanged" />
             <TextBlock FontSize="14" Margin="48,62,161,0" VerticalAlignment="Top" Height="24" Text="First Name" Name="TFirstName" />
             <TextBlock Text="Last Name" FontSize="14" Margin="47,117,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Name="TLastName" />
             <TextBlock Text="Balance" FontSize="14" Margin="47,173,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Name="TBalance" />
             <RadioButton Content="Checking Account" Margin="48,256,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="32" Name="RBCheckAcc" />
             <RadioButton Content="Savings Account" Margin="48,288,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Height="32" Name="RBSavAcc" />
-            <Button Content="Create New Account" Margin="16,336,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="248" Height="48" Name="BtnNewAccount" />
+            <Button Content="Create New Account" Margin="16,336,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="248" Height="48" Name="BtnNewAccount" Click="BtnNewAccount_Click" />
         </Grid>
         <Grid Background="#FFF0F0F0" Margin="328,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="408" Name="LBAllAccs">
             <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,213,45,20"/>
             <TextBlock FontSize="23" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Transactions" VerticalAlignment="Top" Height="31" Width="128"/>
             <ComboBox HorizontalAlignment="Left" Margin="45,60,0,0" VerticalAlignment="Top" Width="143" Name="CBTransType" Height="32"/>
             <TextBlock FontSize="14" HorizontalAlignment="Left" Margin="45,40,0,0" TextWrapping="Wrap" Text="Type of transaction" VerticalAlignment="Top" Height="24" Width="120"/>
-            <Button Content="Execute" HorizontalAlignment="Left" Height="36" Margin="45,168,0,0" VerticalAlignment="Top" Width="143"/>
+            <Button Content="Execute" HorizontalAlignment="Left" Height="36" Margin="45,168,0,0" VerticalAlignment="Top" Width="143" Name="BtnExecute"/>
             <TextBlock FontSize="14" HorizontalAlignment="Left" Margin="45,97,0,0" TextWrapping="Wrap" Text="Amount" VerticalAlignment="Top"/>
             <TextBox FontSize="18" HorizontalAlignment="Left" Margin="45,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Height="32" Name="TBAmount" TextChanged="TBAmount_TextChanged"/>
         </Grid>
