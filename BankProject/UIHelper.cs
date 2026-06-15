@@ -12,21 +12,21 @@ namespace BankProject
     public static class UIHelper
     {
 
-        public static bool FormatDecimalInput(TextBox textBox)
+        public static void FormatDecimalInput(TextBox textBox)
         {
             //if (string.IsNullOrEmpty(textBox.Text) || (textBox.Text.EndsWith(".") && textBox.Text.Count(c => c == '.') == 1)) return;
-            if (string.IsNullOrEmpty(textBox.Text)) return false;
+            if (string.IsNullOrEmpty(textBox.Text)) return;
 
             // Get the current culture's decimal separator
             string decimalSeparator = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
 
-            if (textBox.Text.EndsWith(decimalSeparator) && textBox.Text.Count(c => c.ToString() == decimalSeparator) == 1) return true;
+            if (textBox.Text.EndsWith(decimalSeparator) && textBox.Text.Count(c => c.ToString() == decimalSeparator) == 1) return;
 
             if (!decimal.TryParse(textBox.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.CurrentCulture, out decimal value))
             {
                 MessageBox.Show("Please enter a valid decimal number.");
                 textBox.Text = string.Empty;
-                return false;
+                return;
             }
 
             value = Math.Abs(value);
@@ -39,9 +39,8 @@ namespace BankProject
                 textBox.Text = newText;
                 int lenghtDifference = textBox.Text.Length - oldLength;
                 textBox.SelectionStart = Math.Max(0, selectionStart + lenghtDifference);
-                return true;
+                return;
             }
-            return true;
         }
 
         public static void FormatUsernameInput(TextBox textBox)

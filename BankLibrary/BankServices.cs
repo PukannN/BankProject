@@ -22,6 +22,7 @@ namespace BankLibrary
 
         public static string GenerateAccountNumber()
         {
+            //TODO: unique account number generation logic
             Random random = new Random();
             string accountNumber = Account.IBAN + random.Next(100_000_000, 999_999_999).ToString();
             return accountNumber;

@@ -1,6 +1,7 @@
 ﻿using BankLibrary;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -20,11 +21,13 @@ namespace BankProject
 {
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Account> accounts = new ObservableCollection<Account>();
 
         public MainWindow()
         {
             InitializeComponent();
-
+            LBAllAccs.ItemsSource = accounts;
+            
         }
 
         public void Test(object sender, RoutedEventArgs e)
@@ -64,12 +67,15 @@ namespace BankProject
             if (RBCheckAcc.IsChecked == true)
             {
                 CheckingAccount newAccount = new CheckingAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
+                accounts.Add(newAccount);
                 MessageBox.Show($"Checking account created successfully!\nAccount Number: {newAccount.AccountNumber}\nOwner: {newAccount.FirstName} {newAccount.LastName}\nBalance: {newAccount.Balance}");
             }
             else if (RBSavingAcc.IsChecked == true)
             {
                 SavingsAccount newAccount = new SavingsAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
+                accounts.Add(newAccount);
                 MessageBox.Show($"Savings account created successfully!\nAccount Number: {newAccount.AccountNumber}\nOwner: {newAccount.FirstName} {newAccount.LastName}\nBalance: {newAccount.Balance}");
+
             }
             else
             {
