@@ -1,3 +1,3 @@
 # BankProject
 
-Recreation of a school WinForms project to WPF
+Rekreace školního projektu Banka z WinForms do WPF s SQL Disconnected model ADO.NET
