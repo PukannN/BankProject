@@ -30,13 +30,13 @@
             <!-- First Name -->
             <StackPanel Grid.Row="1" Margin="25,5,25,5">
                 <TextBlock Text="First Name" FontSize="14" Name="TFirstName" Margin="0,0,0,3" />
-                <TextBox FontSize="18" Height="32" Name="TBFirstName" TextChanged="TBFirstName_TextChanged" />
+                <TextBox FontSize="18" Height="32" Name="TBFirstName" TextChanged="TBUsernameInput_TextChanged" />
             </StackPanel>
 
             <!-- Last Name -->
             <StackPanel Grid.Row="2" Margin="25,5,25,5">
                 <TextBlock Text="Last Name" FontSize="14" Name="TLastName" Margin="0,0,0,3" />
-                <TextBox FontSize="18" Height="32" Name="TBLastName" TextChanged="TBLastName_TextChanged" />
+                <TextBox FontSize="18" Height="32" Name="TBLastName" TextChanged="TBUsernameInput_TextChanged" />
             </StackPanel>
 
             <!-- Balance -->
@@ -48,7 +48,7 @@
             <!-- Type of account (RadioButtons) -->
             <StackPanel Grid.Row="4" Margin="25,15,25,5">
                 <RadioButton IsChecked="True" Content="Checking Account" Margin="0,0,0,8" Name="RBCheckAcc" />
-                <RadioButton Content="Savings Account" Name="RBSavAcc" />
+                <RadioButton Content="Savings Account" Name="RBSavingAcc" />
             </StackPanel>
 
             <!-- Create New Account -->

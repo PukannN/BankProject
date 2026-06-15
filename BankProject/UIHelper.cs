@@ -12,20 +12,25 @@ namespace BankProject
     public static class UIHelper
     {
 
-        public static void FormatDecimalInput(TextBox textBox)
+        public static bool FormatDecimalInput(TextBox textBox)
         {
-            if (string.IsNullOrEmpty(textBox.Text) || (textBox.Text.EndsWith(".") && textBox.Text.Count(c => c == '.') == 1)) return;
-            
-            if (!decimal.TryParse(textBox.Text, out decimal value))
+            //if (string.IsNullOrEmpty(textBox.Text) || (textBox.Text.EndsWith(".") && textBox.Text.Count(c => c == '.') == 1)) return;
+            if (string.IsNullOrEmpty(textBox.Text)) return false;
+
+            // Get the current culture's decimal separator
+            string decimalSeparator = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+
+            if (textBox.Text.EndsWith(decimalSeparator) && textBox.Text.Count(c => c.ToString() == decimalSeparator) == 1) return true;
+
+            if (!decimal.TryParse(textBox.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.CurrentCulture, out decimal value))
             {
                 MessageBox.Show("Please enter a valid decimal number.");
-                textBox.Text = "";
-                return;
+                textBox.Text = string.Empty;
+                return false;
             }
-            
-            string newText = Math.Round(value, 2).ToString();
 
-
+            value = Math.Abs(value);
+            string newText = Math.Round(value, 2).ToString(System.Globalization.CultureInfo.CurrentCulture);
             int selectionStart = textBox.SelectionStart;
             int oldLength = textBox.Text.Length;
 
@@ -34,7 +39,9 @@ namespace BankProject
                 textBox.Text = newText;
                 int lenghtDifference = textBox.Text.Length - oldLength;
                 textBox.SelectionStart = Math.Max(0, selectionStart + lenghtDifference);
+                return true;
             }
+            return true;
         }
 
         public static void FormatUsernameInput(TextBox textBox)

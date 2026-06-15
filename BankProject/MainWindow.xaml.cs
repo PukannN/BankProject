@@ -31,30 +31,56 @@ namespace BankProject
         {
             MessageBox.Show($"Test");
         }
-        private void BtnNewAccount_Click(object sender, RoutedEventArgs e)
-        {
             
+        private void TBUsernameInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                UIHelper.FormatUsernameInput(textBox);
+            }
         }
 
         private void TBBalance_TextChanged(object sender, TextChangedEventArgs e)
         {
             UIHelper.FormatDecimalInput(TBBalance);
         }
+        private void BtnNewAccount_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(TBFirstName.Text) || string.IsNullOrEmpty(TBLastName.Text))
+            {
+                MessageBox.Show("Please enter both first name and last name.", "Validation Error");
+                return;
+            }
+
+            if (!decimal.TryParse(TBBalance.Text, out decimal balance))
+            {
+                MessageBox.Show("Please enter a valid initial balance.", "Validation Error");
+
+                return;
+            }
+
+            string accountNumber = BankServices.GenerateAccountNumber();
+
+            if (RBCheckAcc.IsChecked == true)
+            {
+                CheckingAccount newAccount = new CheckingAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
+                MessageBox.Show($"Checking account created successfully!\nAccount Number: {newAccount.AccountNumber}\nOwner: {newAccount.FirstName} {newAccount.LastName}\nBalance: {newAccount.Balance}");
+            }
+            else if (RBSavingAcc.IsChecked == true)
+            {
+                SavingsAccount newAccount = new SavingsAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
+                MessageBox.Show($"Savings account created successfully!\nAccount Number: {newAccount.AccountNumber}\nOwner: {newAccount.FirstName} {newAccount.LastName}\nBalance: {newAccount.Balance}");
+            }
+            else
+            {
+                MessageBox.Show("Please select an account type.", "Validation Error");
+            }
+        }
 
         private void TBAmount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            UIHelper.FormatDecimalInput(TBAmount);
         }
 
-        private void TBFirstName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UIHelper.FormatUsernameInput(TBFirstName);
-        }
-
-        private void TBLastName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UIHelper.FormatUsernameInput(TBLastName);
-        }
 
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {

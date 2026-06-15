@@ -10,6 +10,13 @@ namespace BankLibrary
     {
         //private int withdrawalLimit = 3;
         private decimal interestRate = 0.02m; // 2% interest rate
+        public SavingsAccount(string firstName, string lastName, string accountNumber, decimal balance)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            AccountNumber = accountNumber;
+            Balance = balance;
+        }
 
         public void AddInterestRate()
         {

@@ -19,6 +19,13 @@ namespace BankLibrary
                 account.Balance += amount;
             }
         }
-    }
+
+        public static string GenerateAccountNumber()
+        {
+            Random random = new Random();
+            string accountNumber = Account.IBAN + random.Next(100_000_000, 999_999_999).ToString();
+            return accountNumber;
+        }
+}
 }
 
