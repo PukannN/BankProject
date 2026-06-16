@@ -16,6 +16,7 @@ namespace BankLibrary
             LastName = lastName;
             AccountNumber = accountNumber;
             Balance = balance;
+            AccountType = 'S'; 
         }
 
         public void AddInterestRate()
@@ -25,7 +26,7 @@ namespace BankLibrary
 
         public override string ToString()
         {
-            return $"Savings account: {AccountNumber}, Balance: {Balance}";
+            return $"Checking account: {AccountNumber},Name: {FirstName} {LastName}, Balance: {Balance}, Account Type: {AccountType}";
         }
     }
 }

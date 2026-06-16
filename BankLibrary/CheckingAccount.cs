@@ -10,6 +10,7 @@ namespace BankLibrary
     {
         public string DebitCardNumber { get; set; }
         public decimal OverdraftLimit { get; set; } = 100.00m;
+        
 
         public CheckingAccount(string firstName, string lastName, string accountNumber, decimal balance)
         {
@@ -17,11 +18,12 @@ namespace BankLibrary
             LastName = lastName;
             AccountNumber = accountNumber;
             Balance = balance;
+            AccountType = 'C';
         }
 
         public override string ToString()
         {
-            return $"Checking account: {AccountNumber}, Balance: {Balance}";
+            return $"Checking account: {AccountNumber},Name: {FirstName} {LastName}, Balance: {Balance}, Account Type: {AccountType}";
         }
     }
 }

@@ -1,40 +1,73 @@
 ﻿using BankLibrary;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BankProject
 {
     public partial class MainWindow : Window
     {
+        //ObservableCollection updates the UI automatically
         public ObservableCollection<Account> accounts = new ObservableCollection<Account>();
+
+        public ObservableCollection<TransactionOption> transactionOptions = new ObservableCollection<TransactionOption>
+        {
+            new TransactionOption { DisplayName = "Deposit", ActionCode = "D" },
+            new TransactionOption { DisplayName = "Withdraw", ActionCode = "W" },
+        };
 
         public MainWindow()
         {
             InitializeComponent();
+
             LBAllAccs.ItemsSource = accounts;
-            
+            CBTransType.ItemsSource = transactionOptions;
+            CBTransType.SelectedIndex = 0; //preselect first trancasation option
+
+            LoadAccountsFromDatabase();
+        }
+
+        /// <summary>
+        /// generates account instances from the DB
+        /// </summary>
+        private void LoadAccountsFromDatabase()
+        {
+            accounts.Clear();
+            DataTable dt = DatabaseService.GetAllAccounts();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string accNum = row["AccountNumber"].ToString();
+                string firstName = row["FirstName"].ToString();
+                string lastName = row["LastName"].ToString();
+                decimal balance = Convert.ToDecimal(row["Balance"]);
+                string type = row["AccountType"].ToString();
+
+                Account accountObj = null;
+
+                if (type == "C")
+                {
+                    accountObj = new CheckingAccount(firstName, lastName, accNum, balance);
+                }
+                else if (type == "S")
+                {
+                    accountObj = new SavingsAccount(firstName, lastName, accNum, balance);
+                }
+
+                if (accountObj != null)
+                {
+                    accounts.Add(accountObj);
+                }
+            }
         }
 
         public void Test(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Test");
+            MessageBox.Show("Test");
         }
-            
+
         private void TBUsernameInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is TextBox textBox)
@@ -47,8 +80,15 @@ namespace BankProject
         {
             UIHelper.FormatDecimalInput(TBBalance);
         }
+
+        private void TBAmount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UIHelper.FormatDecimalInput(TBAmount);
+        }
+
         private void BtnNewAccount_Click(object sender, RoutedEventArgs e)
         {
+            //real-time input validation
             if (string.IsNullOrEmpty(TBFirstName.Text) || string.IsNullOrEmpty(TBLastName.Text))
             {
                 MessageBox.Show("Please enter both first name and last name.", "Validation Error");
@@ -58,39 +98,84 @@ namespace BankProject
             if (!decimal.TryParse(TBBalance.Text, out decimal balance))
             {
                 MessageBox.Show("Please enter a valid initial balance.", "Validation Error");
-
                 return;
             }
 
-            string accountNumber = BankServices.GenerateAccountNumber();
+            string accountNumber = BankService.GenerateAccountNumber();
+            char accountType = ' ';
 
             if (RBCheckAcc.IsChecked == true)
             {
-                CheckingAccount newAccount = new CheckingAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
-                accounts.Add(newAccount);
-                MessageBox.Show($"Checking account created successfully!\nAccount Number: {newAccount.AccountNumber}\nOwner: {newAccount.FirstName} {newAccount.LastName}\nBalance: {newAccount.Balance}");
+                accountType = 'C';
             }
             else if (RBSavingAcc.IsChecked == true)
             {
-                SavingsAccount newAccount = new SavingsAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
-                accounts.Add(newAccount);
-                MessageBox.Show($"Savings account created successfully!\nAccount Number: {newAccount.AccountNumber}\nOwner: {newAccount.FirstName} {newAccount.LastName}\nBalance: {newAccount.Balance}");
-
+                accountType = 'S';
             }
             else
             {
                 MessageBox.Show("Please select an account type.", "Validation Error");
+                return;
             }
-        }
 
-        private void TBAmount_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
+            DatabaseService.InsertAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance, accountType);
 
+            //
+            Account newAccount;
+            if (accountType == 'C')
+            {
+                newAccount = new CheckingAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
+            }
+            else
+            {
+                newAccount = new SavingsAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
+            }
+
+            accounts.Add(newAccount);
+
+            MessageBox.Show($"Account successfully created and saved!\nNumber: {accountNumber}", "Success");
+
+            TBFirstName.Clear();
+            TBLastName.Clear();
+            TBBalance.Clear();
+        }
 
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
+            Account selectedAccount = LBAllAccs.SelectedItem as Account;
+            if (selectedAccount == null)
+            {
+                MessageBox.Show("Please select an account from the list.", "Transaction Error");
+                return;
+            }
 
+            TransactionOption selectedOption = CBTransType.SelectedItem as TransactionOption;
+            if (selectedOption == null)
+            {
+                MessageBox.Show("Please select a transaction type.", "Transaction Error");
+                return;
+            }
+
+            if (!decimal.TryParse(TBAmount.Text, out decimal amount) || amount <= 0)
+            {
+                MessageBox.Show("Please enter a valid positive amount.", "Transaction Error");
+                return;
+            }
+
+            BankService.ApplyTransaction(selectedAccount, selectedOption, amount);
+
+            DatabaseService.UpdateAccountBalance(selectedAccount.AccountNumber, selectedAccount.Balance);
+
+            LBAllAccs.Items.Refresh();
+
+            MessageBox.Show($"Transaction successful!\nAccount: {selectedAccount.AccountNumber}\nAction: {selectedOption.DisplayName}\nAmount: {amount}", "Success");
+
+            TBAmount.Clear();
+        }
+
+        private void CBTransType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

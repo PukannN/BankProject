@@ -8,9 +8,14 @@ namespace BankLibrary
 {
     public class TransactionOption
     {
+        public bool IsSelected { get; set; }
         public string DisplayName { get; set; }
         public string ActionCode { get; set; }
 
+        public override string ToString()
+        {
+            return DisplayName;
+        }
 
     }
 }

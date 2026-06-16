@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace BankLibrary
         public string LastName { get; set; }
         public string AccountNumber { get; internal set; }
         public decimal Balance { get; internal set; }
+        public char AccountType { get; internal set; }
 
         public void Deposit(decimal amount)
         {
@@ -35,6 +37,7 @@ namespace BankLibrary
                 return true;
             }
             return false; // Insufficient funds
-        }       
+
+        }
     }
 }
