@@ -64,7 +64,9 @@
     <Compile Include="SavingsAccount.cs" />
     <Compile Include="TransactionOption.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Database_Setup\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="BankDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
