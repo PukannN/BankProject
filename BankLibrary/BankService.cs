@@ -27,7 +27,7 @@ namespace BankLibrary
             string accountNumber;
             do
             {
-                accountNumber = random.Next(10000000, 99999999).ToString();
+                accountNumber = random.Next(10000000, 99999999).ToString() + "/" + Account.BankCode;
             } while (DatabaseService.AccountNumberExists(accountNumber));
             return accountNumber;
 

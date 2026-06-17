@@ -9,7 +9,7 @@ namespace BankLibrary
 {
     public abstract class Account
     {
-        public static readonly string IBAN = "1234";
+        public static readonly string BankCode = "1234";
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AccountNumber { get; internal set; }

@@ -9,7 +9,7 @@ namespace BankLibrary
     public class SavingsAccount : Account
     {
         //private int withdrawalLimit = 3;
-        private decimal interestRate = 0.02m; // 2% interest rate
+        private decimal interestRate = 0.02m;
         public SavingsAccount(string firstName, string lastName, string accountNumber, decimal balance)
         {
             FirstName = firstName;

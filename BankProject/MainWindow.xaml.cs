@@ -44,7 +44,6 @@ namespace BankProject
                 string lastName = row["LastName"].ToString();
                 decimal balance = Convert.ToDecimal(row["Balance"]);
                 string type = row["AccountType"].ToString();
-
                 Account accountObj = null;
 
                 if (type == "C")
@@ -102,8 +101,8 @@ namespace BankProject
             }
 
             string accountNumber = BankService.GenerateAccountNumber();
+            
             char accountType = ' ';
-
             if (RBCheckAcc.IsChecked == true)
             {
                 accountType = 'C';
@@ -142,14 +141,14 @@ namespace BankProject
 
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
-            Account selectedAccount = LBAllAccs.SelectedItem as Account;
+            Account selectedAccount = LBAllAccs.SelectedItem as Account;    
             if (selectedAccount == null)
             {
                 MessageBox.Show("Please select an account from the list.", "Transaction Error");
                 return;
             }
 
-            TransactionOption selectedOption = CBTransType.SelectedItem as TransactionOption;
+            TransactionOption selectedOption = CBTransType.SelectedItem as TransactionOption;        
             if (selectedOption == null)
             {
                 MessageBox.Show("Please select a transaction type.", "Transaction Error");
@@ -159,23 +158,27 @@ namespace BankProject
             if (!decimal.TryParse(TBAmount.Text, out decimal amount) || amount <= 0)
             {
                 MessageBox.Show("Please enter a valid positive amount.", "Transaction Error");
+                TBAmount.Text = String.Empty;
+                return;
+            }
+
+            if (selectedAccount.Balance >= 0 && amount > decimal.MaxValue - selectedAccount.Balance) // new account balance cannot exceed 29 digit number
+            {
+                MessageBox.Show("Your new account balance would exceed the max allowed value!", "Transaction Error");
+                TBAmount.Text = String.Empty;
                 return;
             }
 
             BankService.ApplyTransaction(selectedAccount, selectedOption, amount);
-
-            DatabaseService.UpdateAccountBalance(selectedAccount.AccountNumber, selectedAccount.Balance);
-
+            DatabaseService.UpdateAccountBalance(selectedAccount.AccountNumber, selectedAccount.Balance); 
             LBAllAccs.Items.Refresh();
-
             MessageBox.Show($"Transaction successful!\nAccount: {selectedAccount.AccountNumber}\nAction: {selectedOption.DisplayName}\nAmount: {amount}", "Success");
-
             TBAmount.Clear();
         }
 
         private void CBTransType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-        }
+        } 
     }
 }
