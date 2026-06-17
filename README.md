@@ -25,7 +25,6 @@ Projekt je rozdělený do 3 vrstev
 - **DISCONNECTED MODEL** Data jsou z DB stahována jednorázově do paměti (`DataTable`) pomocí `SqlDataAdapter.Fill()`
 - **Connection String:** `|DataDirectory|` odkazuje na databázi, která je přímo v projektu. SQL soubory se nachází ve slozce `Database_Setup`
 - **Bezpečnost (SQL Injection):** Veškeré SQL dotazy jsou parametrizované
-- 
 
 
 
