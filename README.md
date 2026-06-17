@@ -32,6 +32,7 @@ Projekt je rozdělený do 3 vrstev
 - [ ] Implementace úročení zůstatků na `SavingsAccount`.
 - [ ] Implementace limitu pro výběr (`withdrawalLimit`) na základě typu účtu.
 - [ ] Možnost odstranění vybraného účtu z databáze
+- [ ] Logování transakcí
 
 
 
