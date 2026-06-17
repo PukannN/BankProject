@@ -2,7 +2,7 @@
 
 Rekreace maturitního projektu Banka kompletně přepsaného z `WinForms` do `WPF` a s využitím `ADO.NET Disconnected Modelu` a local `MS SQL`.
 
-Mým hlavním cílem bylo pochopení vývoje aplikací ve WPF a bezpečná práce s databází bez použití ORM frameworků.
+Mým hlavním cílem je pochopení vývoje aplikací ve WPF a bezpečná práce s databází bez použití ORM frameworků.
 
 
 
