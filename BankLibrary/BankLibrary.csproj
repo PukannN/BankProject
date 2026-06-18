@@ -69,10 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BankDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="BankDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>BankDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>

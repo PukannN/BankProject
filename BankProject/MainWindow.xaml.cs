@@ -12,7 +12,7 @@ namespace BankProject
         //ObservableCollection updates the UI automatically
         public ObservableCollection<Account> accounts = new ObservableCollection<Account>();
 
-        public ObservableCollection<TransactionOption> transactionOptions = new ObservableCollection<TransactionOption>
+        public Collection<TransactionOption> transactionOptions = new ObservableCollection<TransactionOption>
         {
             new TransactionOption { DisplayName = "Deposit", ActionCode = "D" },
             new TransactionOption { DisplayName = "Withdraw", ActionCode = "W" },
@@ -57,7 +57,7 @@ namespace BankProject
 
                 if (accountObj != null)
                 {
-                    accounts.Add(accountObj);
+                    accounts.Add(accountObj); 
                 }
             }
         }

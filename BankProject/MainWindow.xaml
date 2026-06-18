@@ -9,12 +9,12 @@
 
     <Grid Background="{DynamicResource Theme_BackgroundBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="310" />
+            <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <!-- New Account Panel-->
-        <Grid Background="#FFF0F0F0" Margin="15,40,10,40" Grid.Column="0">
+        <Grid Background="#FFF0F0F0" Margin="10,40,10,40" Grid.Column="0">
             <!-- Aranging elements -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> <!-- Title -->

@@ -6,12 +6,9 @@ namespace BankLibrary
 {
     public static class DatabaseService
     {
-        private static readonly string ConnectionString =
-            $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BankDB.mdf;Database=BankDB;Integrated Security=True;TrustServerCertificate=True";
+        private static readonly string ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BankDB.mdf;Database=BankDB;";
 
-        /// <summary>
-        /// Checks if a newly generated account number is unique
-        /// </summary>
+        // Checks if a newly generated account number is unique
         public static bool AccountNumberExists(string accountNumber)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -22,14 +19,13 @@ namespace BankLibrary
                     command.Parameters.AddWithValue("@AccountNumber", accountNumber);
                     connection.Open();
                     int count = (int)command.ExecuteScalar();
+
                     return count > 0;
                 }
             }
         }
 
-        /// <summary>
-        /// DISCONNECTED MODEL: loads all accounts into DataTable
-        /// </summary>
+        // DISCONNECTED MODEL: loads all accounts into a DataTable
         public static DataTable GetAllAccounts()
         {
             DataTable dataTable = new DataTable();
@@ -46,9 +42,7 @@ namespace BankLibrary
             return dataTable;
         }
 
-        /// <summary>
-        /// DISCONNECTED MODEL: Enters new account from UI
-        /// </summary>
+        // DISCONNECTED MODEL: Enters new account from UI
         public static void InsertAccount(string firstName, string lastName, string accountNumber, decimal balance, char accountType)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -75,9 +69,7 @@ namespace BankLibrary
             }
         }
 
-        /// <summary>
-        /// DISCONNECTED MODEL: Updates Account balance
-        /// </summary>
+        // DISCONNECTED MODEL: Updates Account balance
         public static void UpdateAccountBalance(string accountNumber, decimal newBalance)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))

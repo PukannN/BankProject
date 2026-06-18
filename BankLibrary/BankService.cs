@@ -8,15 +8,16 @@ namespace BankLibrary
 {
     public static class BankService
     {
+        //for future transaction logs
         public static void ApplyTransaction(Account account, TransactionOption transOption, decimal amount)
         {
             if (transOption.ActionCode == "W")
             {
-                account.Balance -= amount;
+                account.Withdraw(amount);
             }
             else if (transOption.ActionCode == "D")
             {
-                account.Balance += amount;
+                account.Deposit(amount);
             }
         }
 
