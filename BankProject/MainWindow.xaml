@@ -17,12 +17,18 @@
         <Grid Background="#FFF0F0F0" Margin="10,40,10,40" Grid.Column="0">
             <!-- Aranging elements -->
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/> <!-- Title -->
-                <RowDefinition Height="Auto"/> <!-- First Name (Label + TB) -->
-                <RowDefinition Height="Auto"/> <!-- Last Name (Label + TB) -->
-                <RowDefinition Height="Auto"/> <!-- Balance (Label + TB) -->
-                <RowDefinition Height="Auto"/> <!-- RadioButtons -->
-                <RowDefinition Height="*"/>    <!-- Create Button -->
+                <RowDefinition Height="Auto"/>
+                <!-- Title -->
+                <RowDefinition Height="Auto"/>
+                <!-- First Name (Label + TB) -->
+                <RowDefinition Height="Auto"/>
+                <!-- Last Name (Label + TB) -->
+                <RowDefinition Height="Auto"/>
+                <!-- Balance (Label + TB) -->
+                <RowDefinition Height="Auto"/>
+                <!-- RadioButtons -->
+                <RowDefinition Height="*"/>
+                <!-- Create Button -->
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" FontSize="23" HorizontalAlignment="Center" Margin="0,15,0,15" Text="New Account" />
@@ -58,9 +64,12 @@
         <!-- Transactions panel -->
         <Grid Background="#FFF0F0F0" Margin="10,40,10,40" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/> <!-- Title -->
-                <RowDefinition Height="Auto"/> <!-- Options -->
-                <RowDefinition Height="*"/>    <!-- ListBox -->
+                <RowDefinition Height="Auto"/>
+                <!-- Title -->
+                <RowDefinition Height="Auto"/>
+                <!-- Options -->
+                <RowDefinition Height="*"/>
+                <!-- ListBox -->
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" FontSize="23" HorizontalAlignment="Center" Margin="0,15,0,15" Text="Transactions" />
@@ -80,7 +89,7 @@
                 <!-- Type of transaction -->
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,5,0,5">
                     <TextBlock FontSize="14" Text="Type of transaction" Margin="0,0,0,3" />
-                    <ComboBox FontSize="18" Name="CBTransType" Height="32" SelectionChanged="CBTransType_SelectionChanged" />
+                    <ComboBox FontSize="18" Name="CBTransType" SelectionChanged="CBTransType_SelectionChanged" Height="32" />
                 </StackPanel>
 
                 <!-- Amount -->
@@ -91,10 +100,17 @@
 
                 <!-- Execute Button -->
                 <Button Grid.Row="2" Grid.Column="0" Content="Execute" Height="36" Margin="0,10,0,5" Name="BtnExecute" Click="BtnExecute_Click" />
+
+                <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="200,5,0,5" Width="135">
+                    <TextBlock FontSize="14" Text="Interest" Margin="0,0,0,3" HorizontalAlignment="Left" />
+                    <TextBox FontSize="18" x:Name="TBInterest" IsReadOnly="True" Height="32" Width="109" HorizontalAlignment="Left" />
+                </StackPanel>
+
+                <Button Grid.Row ="2" Grid.Column="1" Content="Add Interest" Height="36" Margin="200,10,0,5" Name="BtnInterest" Click="BtnInterest_Click" />
             </Grid>
 
             <!-- Account ListBox -->
-            <ListBox Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,10,45,20" Name="LBAllAccs" />
+            <ListBox Grid.Row="2" Margin="45,10,45,20" Name="LBAllAccs" SelectionChanged="LBAllAccs_SelectionChanged" />
         </Grid>
     </Grid>
 </Window>

@@ -17,7 +17,7 @@ namespace BankProject
             //if (string.IsNullOrEmpty(textBox.Text) || (textBox.Text.EndsWith(".") && textBox.Text.Count(c => c == '.') == 1)) return;
             if (string.IsNullOrEmpty(textBox.Text)) return;
 
-            // Get the current culture's decimal separator
+            // get the current culture's decimal separator
             string decimalSeparator = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
 
             if (textBox.Text.EndsWith(decimalSeparator) && textBox.Text.Count(c => c.ToString() == decimalSeparator) == 1) return;

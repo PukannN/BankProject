@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +8,7 @@ namespace BankLibrary
 {
     public abstract class Account
     {
+        
         public static readonly string BankCode = "1234";
         public string FirstName { get; set; }
         public string LastName { get; set; }

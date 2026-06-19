@@ -9,10 +9,10 @@ namespace BankProject
 {
     public partial class MainWindow : Window
     {
-        //ObservableCollection updates the UI automatically
+        
         public ObservableCollection<Account> accounts = new ObservableCollection<Account>();
 
-        public Collection<TransactionOption> transactionOptions = new ObservableCollection<TransactionOption>
+        public Collection<TransactionOption> transactionOptions = new Collection<TransactionOption>
         {
             new TransactionOption { DisplayName = "Deposit", ActionCode = "D" },
             new TransactionOption { DisplayName = "Withdraw", ActionCode = "W" },
@@ -25,7 +25,6 @@ namespace BankProject
             LBAllAccs.ItemsSource = accounts;
             CBTransType.ItemsSource = transactionOptions;
             CBTransType.SelectedIndex = 0; //preselect first trancasation option
-
             LoadAccountsFromDatabase();
         }
 
@@ -119,7 +118,6 @@ namespace BankProject
 
             DatabaseService.InsertAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance, accountType);
 
-            //
             Account newAccount;
             if (accountType == 'C')
             {
@@ -168,9 +166,14 @@ namespace BankProject
                 TBAmount.Text = String.Empty;
                 return;
             }
+            if (selectedAccount.Balance < amount)
+            {
+                MessageBox.Show("Not enough balance!", "Transaction Error");
+                TBAmount.Text = String.Empty;
+                return;
+            }
 
             BankService.ApplyTransaction(selectedAccount, selectedOption, amount);
-            DatabaseService.UpdateAccountBalance(selectedAccount.AccountNumber, selectedAccount.Balance); 
             LBAllAccs.Items.Refresh();
             MessageBox.Show($"Transaction successful!\nAccount: {selectedAccount.AccountNumber}\nAction: {selectedOption.DisplayName}\nAmount: {amount}", "Success");
             TBAmount.Clear();
@@ -179,6 +182,28 @@ namespace BankProject
         private void CBTransType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-        } 
+        }
+
+        private void BtnInterest_Click(object sender, RoutedEventArgs e)
+        {
+            if (LBAllAccs.SelectedItem is SavingsAccount selectedAcc)
+            {
+                BankService.AddInterestRate(selectedAcc);
+                LBAllAccs.Items.Refresh();
+            }
+        }
+
+        private void LBAllAccs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LBAllAccs.SelectedItem is SavingsAccount selectedAcc)
+            {
+                TBInterest.Text = (selectedAcc.InterestRate * 100).ToString() + "%";
+            }
+            else
+            {
+                TBInterest.Text = String.Empty;
+            }
+
+        }
     }
 }

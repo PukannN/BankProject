@@ -8,7 +8,7 @@ namespace BankLibrary
 {
     public static class BankService
     {
-        //for future transaction logs
+        // for future transaction logs
         public static void ApplyTransaction(Account account, TransactionOption transOption, decimal amount)
         {
             if (transOption.ActionCode == "W")
@@ -19,7 +19,16 @@ namespace BankLibrary
             {
                 account.Deposit(amount);
             }
+            DatabaseService.UpdateAccountBalance(account.AccountNumber, account.Balance);
         }
+        public static void AddInterestRate(SavingsAccount account)
+        {
+            account.Balance += Math.Round(account.Balance * account.InterestRate,2);
+            
+
+            DatabaseService.UpdateAccountBalance(account.AccountNumber, account.Balance);
+        }
+
 
         public static string GenerateAccountNumber()
         {

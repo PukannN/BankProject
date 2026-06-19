@@ -9,19 +9,15 @@ namespace BankLibrary
     public class SavingsAccount : Account
     {
         //private int withdrawalLimit = 3;
-        private decimal interestRate = 0.02m;
+        public decimal InterestRate { get; internal set;}
         public SavingsAccount(string firstName, string lastName, string accountNumber, decimal balance)
         {
             FirstName = firstName;
             LastName = lastName;
             AccountNumber = accountNumber;
             Balance = balance;
-            AccountType = 'S'; 
-        }
-
-        public void AddInterestRate()
-        {
-            Balance += Balance * interestRate;
+            AccountType = 'S';
+            InterestRate = 0.02m;
         }
 
         public override string ToString()
