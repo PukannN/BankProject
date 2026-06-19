@@ -11,15 +11,16 @@ namespace BankLibrary
         // for future transaction logs
         public static void ApplyTransaction(Account account, TransactionOption transOption, decimal amount)
         {
-            if (transOption.ActionCode == "W")
+            if (transOption.ActionCode == 'W')
             {
                 account.Withdraw(amount);
             }
-            else if (transOption.ActionCode == "D")
+            else if (transOption.ActionCode == 'D')
             {
                 account.Deposit(amount);
             }
             DatabaseService.UpdateAccountBalance(account.AccountNumber, account.Balance);
+            DatabaseService.InsertTransactionLog(account.AccountNumber, amount, transOption.ActionCode);
         }
         public static void AddInterestRate(SavingsAccount account)
         {

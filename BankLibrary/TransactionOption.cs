@@ -10,7 +10,7 @@ namespace BankLibrary
     {
         public bool IsSelected { get; set; }
         public string DisplayName { get; set; }
-        public string ActionCode { get; set; }
+        public char ActionCode { get; set; }
 
         public override string ToString()
         {

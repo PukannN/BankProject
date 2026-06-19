@@ -14,8 +14,8 @@ namespace BankProject
 
         public Collection<TransactionOption> transactionOptions = new Collection<TransactionOption>
         {
-            new TransactionOption { DisplayName = "Deposit", ActionCode = "D" },
-            new TransactionOption { DisplayName = "Withdraw", ActionCode = "W" },
+            new TransactionOption { DisplayName = "Deposit", ActionCode = 'D' },
+            new TransactionOption { DisplayName = "Withdraw", ActionCode = 'W' },
         };
 
         public MainWindow()
@@ -100,7 +100,7 @@ namespace BankProject
             }
 
             string accountNumber = BankService.GenerateAccountNumber();
-            
+
             char accountType = ' ';
             if (RBCheckAcc.IsChecked == true)
             {
@@ -127,14 +127,14 @@ namespace BankProject
             {
                 newAccount = new SavingsAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
             }
+                accounts.Add(newAccount);
 
-            accounts.Add(newAccount);
+                MessageBox.Show($"Account successfully created and saved!\nNumber: {accountNumber}", "Success");
 
-            MessageBox.Show($"Account successfully created and saved!\nNumber: {accountNumber}", "Success");
-
-            TBFirstName.Clear();
-            TBLastName.Clear();
-            TBBalance.Clear();
+                TBFirstName.Clear();
+                TBLastName.Clear();
+                TBBalance.Clear();
+            
         }
 
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
@@ -204,6 +204,12 @@ namespace BankProject
                 TBInterest.Text = String.Empty;
             }
 
+        }
+
+        private void BtnTransLog_Click(object sender, RoutedEventArgs e)
+        {
+            LogWindow logWindow = new LogWindow();
+            logWindow.Show();
         }
     }
 }

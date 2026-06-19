@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:BankProject"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Foreground="{DynamicResource Theme_TextBrush}" Height="520" Width="930">
+        Foreground="{DynamicResource Theme_TextBrush}" Height="720" Width="1280">
 
     <Grid Background="{DynamicResource Theme_BackgroundBrush}">
         <Grid.ColumnDefinitions>
@@ -72,11 +72,13 @@
                 <!-- ListBox -->
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" FontSize="23" HorizontalAlignment="Center" Margin="0,15,0,15" Text="Transactions" />
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="23" Margin="0,15,0,15" Text="Transactions" />
 
             <!-- Aranging elements -->
             <Grid Grid.Row="1" Margin="45,0,45,15">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -101,16 +103,34 @@
                 <!-- Execute Button -->
                 <Button Grid.Row="2" Grid.Column="0" Content="Execute" Height="36" Margin="0,10,0,5" Name="BtnExecute" Click="BtnExecute_Click" />
 
-                <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="200,5,0,5" Width="135">
+                <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="0,5,0,5" Width="135">
                     <TextBlock FontSize="14" Text="Interest" Margin="0,0,0,3" HorizontalAlignment="Left" />
-                    <TextBox FontSize="18" x:Name="TBInterest" IsReadOnly="True" Height="32" Width="109" HorizontalAlignment="Left" />
+                    <TextBox FontSize="18" Name="TBInterest" IsReadOnly="True" Height="32" Width="100" HorizontalAlignment="Left" />
                 </StackPanel>
+                <Button Grid.Row ="2" Grid.Column="2" Content="Add Interest" Height="36" Margin="0,10,0,5" Name="BtnInterest" Click="BtnInterest_Click" />
 
-                <Button Grid.Row ="2" Grid.Column="1" Content="Add Interest" Height="36" Margin="200,10,0,5" Name="BtnInterest" Click="BtnInterest_Click" />
+            </Grid>
+            <Grid Grid.Row="2" Margin="45,0,45,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ListBox Grid.ColumnSpan="3" Grid.RowSpan="3" Name="LBAllAccs" SelectionChanged="LBAllAccs_SelectionChanged" />
+
+                <Button Grid.Column="3" Grid.Row="0" Margin="15,0,10,10" Name="BtnTransLog" Content="Transaction Log" Click="BtnTransLog_Click"/>
+                <Button Grid.Column="3" Grid.Row="1" Margin="15,0,10,10" Name="BtnDelAccount" Content="Delete Account"/>
             </Grid>
 
             <!-- Account ListBox -->
-            <ListBox Grid.Row="2" Margin="45,10,45,20" Name="LBAllAccs" SelectionChanged="LBAllAccs_SelectionChanged" />
         </Grid>
     </Grid>
 </Window>

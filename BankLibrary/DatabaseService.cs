@@ -87,5 +87,25 @@ namespace BankLibrary
                 }
             }
         }
+
+        //DISCONNECTED MODEL: Stores transactions into a log
+        public static void InsertTransactionLog(string accountNumber, decimal amount, char transactionType)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string query = "INSERT INTO Transactions VALUES AccountNumber, Amount, TransactionType" + "" +
+                               "VALUES (@AcountNumber, @Amount, @ TransactionType)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@AccountNumber", accountNumber);
+                    command.Parameters.AddWithValue("@Amount", amount);
+                    command.Parameters.AddWithValue("@TransactionType", transactionType);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
     }
 }
