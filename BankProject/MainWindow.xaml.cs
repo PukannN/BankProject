@@ -166,7 +166,7 @@ namespace BankProject
                 TBAmount.Text = String.Empty;
                 return;
             }
-            if (selectedAccount.Balance < amount)
+            if (selectedAccount.Balance < amount && selectedOption.ActionCode=='W')
             {
                 MessageBox.Show("Not enough balance!", "Transaction Error");
                 TBAmount.Text = String.Empty;

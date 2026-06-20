@@ -93,19 +93,39 @@ namespace BankLibrary
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                string query = "INSERT INTO Transactions VALUES AccountNumber, Amount, TransactionType" + "" +
-                               "VALUES (@AcountNumber, @Amount, @ TransactionType)";
+                string query = "INSERT INTO Transactions (AccountNumber, Amount, TransactionType) " +
+                               "VALUES (@AccountNumber, @Amount, @TransactionType)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@AccountNumber", accountNumber);
                     command.Parameters.AddWithValue("@Amount", amount);
                     command.Parameters.AddWithValue("@TransactionType", transactionType);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter())
+                    {
+                        adapter.InsertCommand = command;
+                        connection.Open();
+                        adapter.InsertCommand.ExecuteNonQuery();
+                        connection.Close();
+                    }
                 }
             }
+        }
+        // DISCONNECTED MODEL: loads all accounts into DataTable
+        public static DataTable GetAllTransactions()
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string query = "SELECT * FROM Transactions";
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            return dataTable;
         }
     }
 }
