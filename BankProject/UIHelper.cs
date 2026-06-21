@@ -52,5 +52,11 @@ namespace BankProject
             textBox.SelectionStart = selectionStart;
           
         }
-}
+
+        public static void PasswordInput(TextBox textBox)
+        {
+           
+        }
+
+    }
 }

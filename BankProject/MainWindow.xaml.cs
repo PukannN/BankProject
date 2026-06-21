@@ -139,14 +139,15 @@ namespace BankProject
 
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
+            TransactionOption selectedOption = CBTransType.SelectedItem as TransactionOption;        
             Account selectedAccount = LBAllAccs.SelectedItem as Account;    
+            
             if (selectedAccount == null)
             {
                 MessageBox.Show("Please select an account from the list.", "Transaction Error");
                 return;
             }
 
-            TransactionOption selectedOption = CBTransType.SelectedItem as TransactionOption;        
             if (selectedOption == null)
             {
                 MessageBox.Show("Please select a transaction type.", "Transaction Error");
