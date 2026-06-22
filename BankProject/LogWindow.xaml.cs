@@ -46,8 +46,7 @@ namespace BankProject
 
                 Transaction newTransaction = new Transaction(id, accountNumber, amount, transactionType);
                 transactions.Add(newTransaction);
-
             }
+        }
     }
-}
 }

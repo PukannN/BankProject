@@ -1,13 +1,17 @@
-﻿<Window x:Class="BankProject.MainWindow" ResizeMode="NoResize"
+﻿<Window 
+    x:Class="BankProject.MainWindow" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BankProject"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    ResizeMode="CanMinimize"
     Title="Bank"
-    Height="720"
-    Width="1280" 
+    Height="600"
+    Width="1100" 
+    MinHeight="600"
+    MinWidth="1100" 
     WindowStartupLocation="CenterScreen">
 
     <!--
@@ -15,31 +19,36 @@
             <RectangleGeometry Rect="0,0,1280,720" RadiusX="10" RadiusY="10"/>
     </Window.Clip>
     -->
-    
+
     <Window.Resources>
+        
         <Style x:Key="ModernButton" TargetType="Button">
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="8"/>
+                    <Setter Property="CornerRadius" Value="8" />
                 </Style>
             </Style.Resources>
             <Setter Property="Background" Value="White" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="FontWeight" Value="Medium" />
         </Style>
 
         <Style x:Key="ModernTextBlock" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
         </Style>
 
         <Style x:Key="ModernTitle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White" />
         </Style>
 
-        <Style TargetType="TextBox">
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
             <Setter Property="Background" Value="White" />
             <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Medium" />
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="4"/>
@@ -47,19 +56,26 @@
             </Style.Resources>
         </Style>
 
-        <Style TargetType="RadioButton">
-            <Setter Property="Foreground" Value="White" />
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="18" />
         </Style>
 
-        <Style TargetType="ListBox">
-            <Setter Property="Background" Value="White"/>
+        <Style x:Key="ModernRadioButton" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="ModernListBox" TargetType="ListBox">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="FontWeight" Value="Medium" />
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
+                    <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Style.Resources>
         </Style>
-        
+
 
     </Window.Resources>
 
@@ -67,7 +83,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="195*" />
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <!-- New Account Panel-->
@@ -96,39 +113,39 @@
 
             <!-- First Name -->
             <StackPanel Grid.Row="1" Margin="25,5,25,5">
-                <TextBlock Text="First Name" Style="{StaticResource ModernTextBlock}" FontSize="14" Name="TFirstName" Margin="0,0,0,3" />
-                <TextBox FontSize="18" Height="32" Name="TBFirstName" TextChanged="TBUsernameInput_TextChanged" >
+                <TextBlock Text="First Name" Style="{StaticResource ModernTextBlock}" Name="TFirstName" Margin="0,0,0,3" />
+                <TextBox Height="32" Name="TBFirstName" Style="{StaticResource ModernTextBox}" TextChanged="TBUsernameInput_TextChanged" >
                 </TextBox>
             </StackPanel>
 
             <!-- Last Name -->
             <StackPanel Grid.Row="2" Margin="25,5,25,5">
-                <TextBlock Text="Last Name" Style="{StaticResource ModernTextBlock}" FontSize="14" Name="TLastName" Margin="0,0,0,3" />
-                <TextBox FontSize="18" Height="32" Name="TBLastName" TextChanged="TBUsernameInput_TextChanged" />
+                <TextBlock Text="Last Name" Style="{StaticResource ModernTextBlock}" Name="TLastName" Margin="0,0,0,3" />
+                <TextBox Height="32" Name="TBLastName" Style="{StaticResource ModernTextBox}" TextChanged="TBUsernameInput_TextChanged" />
             </StackPanel>
 
             <!-- Password -->
             <StackPanel Grid.Row="3" Margin="25,5,25,5">
-                <TextBlock Text="Password" Style="{StaticResource ModernTextBlock}" FontSize="14" Name="TPassword" Margin="0,0,0,3" />
-                <TextBox FontSize="18" Height="32" Name="TBPassword" />
+                <TextBlock Text="Password" Style="{StaticResource ModernTextBlock}" Name="TPassword" Margin="0,0,0,3" />
+                <TextBox Height="32" Name="TBPassword" Style="{StaticResource ModernTextBox}" />
             </StackPanel>
 
             <!-- Password again -->
             <StackPanel Grid.Row="4" Margin="25,5,25,5">
-                <TextBlock Text="Confirm Password" Style="{StaticResource ModernTextBlock}" FontSize="14" Name="TPasswordVerify" Margin="0,0,0,3" />
-                <TextBox FontSize="18" Height="32" Name="TBPasswordVerify" />
+                <TextBlock Text="Confirm Password" Style="{StaticResource ModernTextBlock}" Name="TPasswordVerify" Margin="0,0,0,3" />
+                <TextBox Height="32" Name="TBPasswordVerify" Style="{StaticResource ModernTextBox}" />
             </StackPanel>
 
             <!-- Balance -->
             <StackPanel Grid.Row="5" Margin="25,5,25,5">
-                <TextBlock Text="Balance" Style="{StaticResource ModernTextBlock}" FontSize="14" Name="TBalance" Margin="0,0,0,3" />
-                <TextBox FontSize="18" Height="32" Name="TBBalance" TextChanged="TBBalance_TextChanged" />
+                <TextBlock Text="Balance" Style="{StaticResource ModernTextBlock}" Name="TBalance" Margin="0,0,0,3" />
+                <TextBox Height="32" Name="TBBalance" Style="{StaticResource ModernTextBox}" TextChanged="TBBalance_TextChanged" />
             </StackPanel>
 
             <!-- Type of account (RadioButtons) -->
             <StackPanel Grid.Row="6" Margin="25,15,25,5">
-                <RadioButton IsChecked="True" Content="Checking Account" Margin="0,0,0,8" Name="RBCheckAcc" />
-                <RadioButton Content="Savings Account" Name="RBSavingAcc" />
+                <RadioButton IsChecked="True" Style="{StaticResource ModernRadioButton}" Content="Checking Account" Margin="0,10,0,10" Name="RBCheckAcc" />
+                <RadioButton Content="Savings Account" Style="{StaticResource ModernRadioButton}" Name="RBSavingAcc" />
             </StackPanel>
 
             <!-- Create New Account -->
@@ -136,7 +153,7 @@
         </Grid>
 
         <!-- Transactions panel -->
-        <Grid Margin="290,0,0,0" Grid.ColumnSpan="2" Background="#FF4D7E8A">
+        <Grid Margin="290,0,0,0" Grid.ColumnSpan="3" Background="#FF4D7E8A">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <!-- Title -->
@@ -151,9 +168,13 @@
             <!-- Aranging elements -->
             <Grid Grid.Row="1" Margin="45,0,45,15">
                 <Grid.ColumnDefinitions>
+                    <!-- Type of Transaction (Label + TB + Btn) -->
                     <ColumnDefinition Width="180" />
+                    <!-- Filler Column-->
                     <ColumnDefinition Width="180" />
+                    <!-- Interest (Label + TB + Btn) -->
                     <ColumnDefinition Width="180" />
+                    <!-- Filler Column -->
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -164,14 +185,14 @@
 
                 <!-- Type of transaction -->
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,5,0,5">
-                    <TextBlock FontSize="14" Style="{StaticResource ModernTextBlock}" Text="Type of transaction" Margin="0,0,0,3" />
-                    <ComboBox FontSize="18" Name="CBTransType" SelectionChanged="CBTransType_SelectionChanged" Height="32" />
+                    <TextBlock Style="{StaticResource ModernTextBlock}" Text="Type of transaction" Margin="0,0,0,3" />
+                    <ComboBox Style="{StaticResource ModernComboBox}" Name="CBTransType" SelectionChanged="CBTransType_SelectionChanged" Height="32" />
                 </StackPanel>
 
                 <!-- Amount -->
                 <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,5,0,5">
-                    <TextBlock FontSize="14" Style="{StaticResource ModernTextBlock}" Text="Amount" Margin="0,0,0,3" />
-                    <TextBox FontSize="18" Name="TBAmount" TextChanged="TBAmount_TextChanged" Height="32" />
+                    <TextBlock Style="{StaticResource ModernTextBlock}" Text="Amount" Margin="0,0,0,3" />
+                    <TextBox Style="{StaticResource ModernTextBox}" Name="TBAmount" TextChanged="TBAmount_TextChanged" Height="32" />
                 </StackPanel>
 
                 <!-- Execute Button -->
@@ -179,8 +200,8 @@
 
                 <!-- Interest -->
                 <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="0,5,0,5" Width="135">
-                    <TextBlock FontSize="14" Style="{StaticResource ModernTextBlock}" Text="Interest" Margin="0,0,0,3" HorizontalAlignment="Left" />
-                    <TextBox FontSize="18" Name="TBInterest" IsReadOnly="True" Height="32" Width="100" HorizontalAlignment="Left" />
+                    <TextBlock Style="{StaticResource ModernTextBlock}" Text="Interest" Margin="0,0,0,3" HorizontalAlignment="Left" />
+                    <TextBox Style="{StaticResource ModernTextBox}" Name="TBInterest" IsReadOnly="True" Height="32" Width="100" HorizontalAlignment="Left" />
                 </StackPanel>
 
                 <!-- Add Interest Button -->
@@ -189,6 +210,9 @@
 
             <!-- Aranging elements -->
             <Grid Grid.Row="2" Margin="45,0,45,15">
+                <!-- 4 Columns (+ Filler) for the Accounts (LB) and TrasactionLog + DeleteAcctount (Btn)
+                     2 Rows (+ Filler) for each button
+                     Accounts (LB) spans across multiple of these collums a rows -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="180" />
@@ -203,7 +227,8 @@
                 </Grid.RowDefinitions>
 
                 <!-- Account ListBox -->
-                <ListBox Grid.ColumnSpan="3" Grid.RowSpan="3" Name="LBAllAccs" SelectionChanged="LBAllAccs_SelectionChanged" />
+                <ListBox Grid.ColumnSpan="3" Grid.RowSpan="3" Style="{StaticResource ModernListBox}" Margin="0,0,0,10" Name="LBAllAccs" SelectionChanged="LBAllAccs_SelectionChanged" />
+
                 <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource ModernButton}" Margin="15,0,10,10" Name="BtnTransLog" Content="Transaction Log" Click="BtnTransLog_Click"/>
                 <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource ModernButton}" Margin="15,0,10,10" Name="BtnDelAccount" Content="Delete Account"/>
             </Grid>

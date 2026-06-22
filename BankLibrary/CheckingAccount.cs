@@ -23,7 +23,7 @@ namespace BankLibrary
 
         public override string ToString()
         {
-            return $"Checking account: {AccountNumber},Name: {FirstName} {LastName}, Balance: {Balance}, Account Type: {AccountType}";
+            return $"Checking account: {AccountNumber} | Name: {FirstName} {LastName} | Balance: {Balance} | Account Type: {AccountType}";
         }
     }
 }

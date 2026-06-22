@@ -26,7 +26,6 @@ namespace BankLibrary
         {
             account.Balance += Math.Round(account.Balance * account.InterestRate,2);
             
-
             DatabaseService.UpdateAccountBalance(account.AccountNumber, account.Balance);
         }
 
