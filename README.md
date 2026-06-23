@@ -11,7 +11,7 @@ Mým hlavním cílem je pochopení vývoje aplikací ve WPF a bezpečná práce 
 Projekt je rozdělený do 3 vrstev
 - **BankProject (WPF):** Jedno hlavní okno
 - **BankLibrary (Class Library):** Logika celého systému
-- **BankConsole (Console Application)** Izolované testování
+- **BankConsole (Console Application):** Izolované testování
 
 
 
@@ -31,7 +31,6 @@ Projekt je rozdělený do 3 vrstev
 ## TODO
 - [ ] Implementace limitu pro výběr (`withdrawalLimit`) na základě typu účtu.
 - [ ] Možnost odstranění vybraného účtu z databáze v UI
-- [ ] Logování transakcí
 - [ ] Password protection účtů s SHA 256 encryption
 
 
