@@ -9,7 +9,7 @@
     ResizeMode="CanMinimize"
     Title="Bank"
     Height="600"
-    Width="1100" 
+    Width="1110" 
     MinHeight="600"
     MinWidth="1100" 
     WindowStartupLocation="CenterScreen">
@@ -49,11 +49,14 @@
             <Setter Property="FontSize" Value="18" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontWeight" Value="Medium" />
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="4"/>
-                </Style>
-            </Style.Resources>
+        </Style>
+
+        <Style x:Key="ModernPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Medium" />
         </Style>
 
         <Style x:Key="ModernComboBox" TargetType="ComboBox">
@@ -100,7 +103,7 @@
                 <RowDefinition Height="Auto"/>
                 <!-- Balance (Label + TB) -->
                 <RowDefinition Height="Auto"/>
-                <!-- Password (Label + TB) -->
+                <!-- Password (Label + TB) --> 
                 <RowDefinition Height="Auto"/>
                 <!-- Password again (Label + TB) -->
                 <RowDefinition Height="Auto"/>
@@ -127,13 +130,13 @@
             <!-- Password -->
             <StackPanel Grid.Row="3" Margin="25,5,25,5">
                 <TextBlock Text="Password" Style="{StaticResource ModernTextBlock}" Name="TPassword" Margin="0,0,0,3" />
-                <TextBox Height="32" Name="TBPassword" Style="{StaticResource ModernTextBox}" />
+                <PasswordBox Height="32" Name="TBPassword" Style="{StaticResource ModernPasswordBox}" />
             </StackPanel>
 
             <!-- Password again -->
             <StackPanel Grid.Row="4" Margin="25,5,25,5">
                 <TextBlock Text="Confirm Password" Style="{StaticResource ModernTextBlock}" Name="TPasswordVerify" Margin="0,0,0,3" />
-                <TextBox Height="32" Name="TBPasswordVerify" Style="{StaticResource ModernTextBox}" />
+                <PasswordBox Height="32" Name="TBPasswordVerify" Style="{StaticResource ModernPasswordBox}" />
             </StackPanel>
 
             <!-- Balance -->

@@ -19,10 +19,6 @@ namespace BankProject
 {
     public partial class LogWindow : Window
     {
-        //Transaction class - e.g. Transaction.Withdrawl and Transaction.Deposit
-        //Transaction.Id, Transaction.Amount etc.
-        //Merge it with the TransactionOptions, makes more sense
-
         public ObservableCollection<Transaction> transactions = new ObservableCollection<Transaction>();
 
         public LogWindow()

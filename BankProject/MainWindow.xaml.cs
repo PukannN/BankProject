@@ -28,9 +28,6 @@ namespace BankProject
             LoadAccountsFromDatabase();
         }
 
-        /// <summary>
-        /// generates account instances from the DB
-        /// </summary>
         private void LoadAccountsFromDatabase()
         {
             accounts.Clear();
