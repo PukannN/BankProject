@@ -43,7 +43,7 @@ namespace BankLibrary
         }
 
         // DISCONNECTED MODEL: Enters new account from UI
-        public static void InsertAccount(string firstName, string lastName, string accountNumber, decimal balance, char accountType)
+        public static bool InsertAccount(string firstName, string lastName, string accountNumber, decimal balance, char accountType)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -64,6 +64,7 @@ namespace BankLibrary
                         connection.Open();
                         adapter.InsertCommand.ExecuteNonQuery();
                         connection.Close();
+                        return true;
                     }
                 }
             }

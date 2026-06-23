@@ -10,8 +10,9 @@ namespace BankLibrary
     {
         //private int withdrawalLimit = 3;
         public decimal InterestRate { get; internal set;}
-        public SavingsAccount(string firstName, string lastName, string accountNumber, decimal balance)
+        public SavingsAccount(string firstName, string lastName, string accountNumber, decimal balance, int accountId)
         {
+            AccountId = accountId;
             FirstName = firstName;
             LastName = lastName;
             AccountNumber = accountNumber;
@@ -22,7 +23,7 @@ namespace BankLibrary
 
         public override string ToString()
         {
-            return $"Checking account: {AccountNumber} | Name: {FirstName} {LastName} | Balance: {Balance} | Account Type: {AccountType}";
+            return $"Id: {AccountId}, Checking account: {AccountNumber} | Name: {FirstName} {LastName} | Balance: {Balance} | Account Type: {AccountType}";
         }
     }
 }

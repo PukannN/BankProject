@@ -10,6 +10,7 @@ namespace BankLibrary
     {
         
         public static readonly string BankCode = "1234";
+        public int AccountId { get; internal set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AccountNumber { get; internal set; }

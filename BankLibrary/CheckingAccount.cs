@@ -12,8 +12,9 @@ namespace BankLibrary
         public decimal OverdraftLimit { get; set; } = 100.00m;
         
 
-        public CheckingAccount(string firstName, string lastName, string accountNumber, decimal balance)
+        public CheckingAccount(string firstName, string lastName, string accountNumber, decimal balance, int accountId)
         {
+            AccountId = accountId;
             FirstName = firstName;
             LastName = lastName;
             AccountNumber = accountNumber;
@@ -23,7 +24,7 @@ namespace BankLibrary
 
         public override string ToString()
         {
-            return $"Checking account: {AccountNumber} | Name: {FirstName} {LastName} | Balance: {Balance} | Account Type: {AccountType}";
+            return $"Id: {AccountId}, Checking account: {AccountNumber} | Name: {FirstName} {LastName} | Balance: {Balance} | Account Type: {AccountType}";
         }
     }
 }

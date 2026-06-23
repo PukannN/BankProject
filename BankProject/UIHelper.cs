@@ -11,10 +11,9 @@ namespace BankProject
 {
     public static class UIHelper
     {
-
+        // realtime decimal input check
         public static void FormatDecimalInput(TextBox textBox)
         {
-            //if (string.IsNullOrEmpty(textBox.Text) || (textBox.Text.EndsWith(".") && textBox.Text.Count(c => c == '.') == 1)) return;
             if (string.IsNullOrEmpty(textBox.Text)) return;
 
             // get the current culture's decimal separator
@@ -43,6 +42,7 @@ namespace BankProject
             }
         }
 
+        // realtime username input check
         public static void FormatUsernameInput(TextBox textBox)
         {
             if (string.IsNullOrEmpty(textBox.Text)) return;
@@ -52,6 +52,7 @@ namespace BankProject
             textBox.SelectionStart = selectionStart;
           
         }
+
 
         public static void PasswordInput(TextBox textBox)
         {

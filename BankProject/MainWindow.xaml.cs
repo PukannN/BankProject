@@ -35,6 +35,7 @@ namespace BankProject
 
             foreach (DataRow row in dt.Rows)
             {
+                int accountId = Convert.ToInt32(row["Id"]);
                 string accNum = row["AccountNumber"].ToString();
                 string firstName = row["FirstName"].ToString();
                 string lastName = row["LastName"].ToString();
@@ -44,11 +45,11 @@ namespace BankProject
 
                 if (type == "C")
                 {
-                    accountObj = new CheckingAccount(firstName, lastName, accNum, balance);
+                    accountObj = new CheckingAccount(firstName, lastName, accNum, balance, accountId);
                 }
                 else if (type == "S")
                 {
-                    accountObj = new SavingsAccount(firstName, lastName, accNum, balance);
+                    accountObj = new SavingsAccount(firstName, lastName, accNum, balance, accountId);
                 }
 
                 if (accountObj != null)
@@ -83,7 +84,6 @@ namespace BankProject
 
         private void BtnNewAccount_Click(object sender, RoutedEventArgs e)
         {
-            //real-time input validation
             if (string.IsNullOrEmpty(TBFirstName.Text) || string.IsNullOrEmpty(TBLastName.Text))
             {
                 MessageBox.Show("Please enter both first name and last name.", "Validation Error");
@@ -96,9 +96,7 @@ namespace BankProject
                 return;
             }
 
-            string accountNumber = BankService.GenerateAccountNumber();
-
-            char accountType = ' ';
+            char accountType;
             if (RBCheckAcc.IsChecked == true)
             {
                 accountType = 'C';
@@ -113,25 +111,18 @@ namespace BankProject
                 return;
             }
 
-            DatabaseService.InsertAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance, accountType);
-
-            Account newAccount;
-            if (accountType == 'C')
+            string accountNumber = BankService.GenerateAccountNumber();
+            if(DatabaseService.InsertAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance, accountType))
             {
-                newAccount = new CheckingAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
-            }
-            else
-            {
-                newAccount = new SavingsAccount(TBFirstName.Text, TBLastName.Text, accountNumber, balance);
-            }
-                accounts.Add(newAccount);
+                LoadAccountsFromDatabase();
 
                 MessageBox.Show($"Account successfully created and saved!\nNumber: {accountNumber}", "Success");
 
                 TBFirstName.Clear();
                 TBLastName.Clear();
                 TBBalance.Clear();
-            
+            }
+
         }
 
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
