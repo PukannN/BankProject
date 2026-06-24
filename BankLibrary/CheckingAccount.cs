@@ -12,13 +12,8 @@ namespace BankLibrary
         public decimal OverdraftLimit { get; set; } = 100.00m;
         
 
-        public CheckingAccount(string firstName, string lastName, string accountNumber, decimal balance, int accountId)
+        public CheckingAccount(string firstName, string lastName, string password, string accountNumber, decimal balance, int accountId) : base(firstName, lastName, password, accountNumber, balance, accountId)
         {
-            AccountId = accountId;
-            FirstName = firstName;
-            LastName = lastName;
-            AccountNumber = accountNumber;
-            Balance = balance;
             AccountType = 'C';
         }
 

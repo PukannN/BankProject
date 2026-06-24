@@ -14,8 +14,19 @@ namespace BankLibrary
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AccountNumber { get; internal set; }
-        public decimal Balance { get; internal set; }
+        public string Password { get; internal set; }
+        public decimal Balance { get; internal set; } = 0.00m;
         public char AccountType { get; internal set; }
+
+        public Account(string firstName, string lastName, string password, string accountNumber, decimal balance, int accountId)
+        {
+            AccountId = accountId;
+            FirstName = firstName;
+            LastName = lastName;
+            Password = password;
+            AccountNumber = accountNumber;
+            Balance = balance;
+        }
 
         public void Deposit(decimal amount)
         {

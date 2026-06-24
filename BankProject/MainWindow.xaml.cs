@@ -45,11 +45,11 @@ namespace BankProject
 
                 if (type == "C")
                 {
-                    accountObj = new CheckingAccount(firstName, lastName, accNum, balance, accountId);
+                    accountObj = new CheckingAccount(firstName, lastName, "placeholder", accNum, balance, accountId);
                 }
                 else if (type == "S")
                 {
-                    accountObj = new SavingsAccount(firstName, lastName, accNum, balance, accountId);
+                    accountObj = new SavingsAccount(firstName, lastName, "placeholder", accNum, balance, accountId);
                 }
 
                 if (accountObj != null)
