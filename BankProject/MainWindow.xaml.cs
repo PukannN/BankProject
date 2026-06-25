@@ -26,6 +26,7 @@ namespace BankProject
             CBTransType.ItemsSource = transactionOptions;
             CBTransType.SelectedIndex = 0; //preselect first trancasation option
             LoadAccountsFromDatabase();
+            LBAllAccs.Items.Refresh();
         }
 
         private void LoadAccountsFromDatabase()
@@ -199,6 +200,12 @@ namespace BankProject
         {
             LogWindow logWindow = new LogWindow();
             logWindow.Show();
+        }
+
+        private void BtnRefreshList_Click(object sender, RoutedEventArgs e)
+        {
+            LoadAccountsFromDatabase();
+            LBAllAccs.Items.Refresh();
         }
     }
 }

@@ -221,19 +221,23 @@
                     <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="180" />
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
 
                 <!-- Account ListBox -->
-                <ListBox Grid.ColumnSpan="3" Grid.RowSpan="3" Style="{StaticResource ModernListBox}" Margin="0,0,0,10" Name="LBAllAccs" SelectionChanged="LBAllAccs_SelectionChanged" />
+                <ListBox Grid.ColumnSpan="3" Grid.RowSpan="6" Style="{StaticResource ModernListBox}" Margin="0,0,0,10" Name="LBAllAccs" SelectionChanged="LBAllAccs_SelectionChanged" />
 
                 <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource ModernButton}" Margin="15,0,10,10" Name="BtnTransLog" Content="Transaction Log" Click="BtnTransLog_Click"/>
                 <Button Grid.Column="3" Grid.Row="1" Style="{StaticResource ModernButton}" Margin="15,0,10,10" Name="BtnDelAccount" Content="Delete Account"/>
+                <Button Grid.Column="3" Grid.Row="5" Style="{StaticResource ModernButton}" Margin="15,0,10,10" Name="BtnRefreshList" Content="Refresh List" Click="BtnRefreshList_Click"/>
             </Grid>
         </Grid>
     </Grid>
