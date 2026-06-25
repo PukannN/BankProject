@@ -71,7 +71,24 @@ namespace BankLibrary
                 }
             }
         }
+        // CONNECTED MODEL: Delete selected account
+        public static void DeleteAccount(string accountNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string query = "DELETE FROM Accounts WHERE AccountNumber = @AccountNumber";
 
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@AccountNumber", accountNumber);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+        
         // CONNECTED MODEL: Stores transactions into a log
         public static void InsertTransactionLog(string accountNumber, decimal amount, char transactionType)
         {

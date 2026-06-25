@@ -58,6 +58,8 @@ namespace BankProject
                     accounts.Add(accountObj); 
                 }
             }
+
+            LBAllAccs.Items.Refresh();
         }
 
         public void Test(object sender, RoutedEventArgs e)
@@ -205,7 +207,21 @@ namespace BankProject
         private void BtnRefreshList_Click(object sender, RoutedEventArgs e)
         {
             LoadAccountsFromDatabase();
-            LBAllAccs.Items.Refresh();
+        }
+
+        private void BtnDelAccount_Click(object sender, RoutedEventArgs e)
+        {
+            if(LBAllAccs.SelectedItem == null)
+            {
+                MessageBox.Show("Please selected an account from the list", "Validation Error");
+                return;
+            }
+            else
+            {
+                Account selectedAccount = LBAllAccs.SelectedItem as Account;
+                DatabaseService.DeleteAccount(selectedAccount.AccountNumber);
+                LoadAccountsFromDatabase();
+            }
         }
     }
 }

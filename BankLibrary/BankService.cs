@@ -29,7 +29,6 @@ namespace BankLibrary
             DatabaseService.UpdateAccountBalance(account.AccountNumber, account.Balance);
         }
 
-
         public static string GenerateAccountNumber()
         {
             
