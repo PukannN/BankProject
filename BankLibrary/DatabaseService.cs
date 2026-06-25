@@ -8,7 +8,7 @@ namespace BankLibrary
     {
         private static readonly string ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BankDB.mdf;Database=BankDB;";
 
-        // Checks if a newly generated account number is unique
+        // CONNECTED MODEL: Checks if a newly generated account number is unique
         public static bool AccountNumberExists(string accountNumber)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -25,24 +25,7 @@ namespace BankLibrary
             }
         }
 
-        // DISCONNECTED MODEL: loads all accounts into a DataTable
-        public static DataTable GetAllAccounts()
-        {
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                string query = "SELECT * FROM Accounts";
-
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-                {
-                    adapter.Fill(dataTable);
-                }
-            }
-            return dataTable;
-        }
-
-        // DISCONNECTED MODEL: Enters new account from UI
+        // CONNECTED MODEL: Enters new account from UI
         public static bool InsertAccount(string firstName, string lastName, string accountNumber, decimal balance, char accountType)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -70,7 +53,7 @@ namespace BankLibrary
             }
         }
 
-        // DISCONNECTED MODEL: Updates Account balance
+        // CONNECTED MODEL: Updates Account balance
         public static void UpdateAccountBalance(string accountNumber, decimal newBalance)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -89,7 +72,7 @@ namespace BankLibrary
             }
         }
 
-        //DISCONNECTED MODEL: Stores transactions into a log
+        // CONNECTED MODEL: Stores transactions into a log
         public static void InsertTransactionLog(string accountNumber, decimal amount, char transactionType)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -112,7 +95,7 @@ namespace BankLibrary
                 }
             }
         }
-        // DISCONNECTED MODEL: loads all accounts into DataTable
+        // DISCONNECTED MODEL: fetches Accounts table into DataTable
         public static DataTable GetAllTransactions()
         {
             DataTable dataTable = new DataTable();
@@ -120,6 +103,23 @@ namespace BankLibrary
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 string query = "SELECT * FROM Transactions";
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            return dataTable;
+        }
+
+        // DISCONNECTED MODEL: loads all accounts into a DataTable
+        public static DataTable GetAllAccounts()
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string query = "SELECT * FROM Accounts";
 
                 using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
                 {
